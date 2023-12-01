@@ -1,5 +1,6 @@
 package com.example.DnD.Dtos;
 
+import jakarta.validation.constraints.NotBlank;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import org.jetbrains.annotations.NotNull;
@@ -7,6 +8,8 @@ import org.jetbrains.annotations.NotNull;
 @AllArgsConstructor
 @Data
 public class DnDto {
+    @NotBlank
+    private String Name;
     @NotNull
     private int Strength;
     @NotNull
@@ -19,6 +22,18 @@ public class DnDto {
     private int Wisdom;
     @NotNull
     private int Charisma;
+    @NotNull
+    private int ModStrength;
+    @NotNull
+    private int ModDexterity;
+    @NotNull
+    private int ModConstituition;
+    @NotNull
+    private int ModInteligence;
+    @NotNull
+    private int ModWisdom;
+    @NotNull
+    private int ModCharisma;
 
 
 

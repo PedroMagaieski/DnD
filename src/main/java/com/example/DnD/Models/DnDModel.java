@@ -8,12 +8,14 @@ import java.io.Serializable;
 import java.util.UUID;
 
 @Entity
-@Table(name ="TB_FICHA")
+@Table(name ="TB_STATS")
 public class DnDModel implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private UUID id;
+    @Column(nullable=false)
+    private String Name;
     @Column(nullable=false)
     private int Strength;
     @Column(nullable=false)
@@ -26,6 +28,18 @@ public class DnDModel implements Serializable {
     private int Wisdom;
     @Column(nullable=false)
     private int Charisma;
+    @Column(nullable=false)
+    private int ModStrength;
+    @Column(nullable=false)
+    private int ModDexterity;
+    @Column(nullable=false)
+    private int ModConstituition;
+    @Column(nullable=false)
+    private int ModInteligence;
+    @Column(nullable=false)
+    private int ModWisdom;
+    @Column(nullable=false)
+    private int ModCharisma;
 
     public UUID getId() {
         return id;
@@ -83,5 +97,59 @@ public class DnDModel implements Serializable {
         Charisma = aCharisma;
     }
 
+    public String getName() {
+        return Name;
+    }
 
+    public void setName(String name) {
+        Name = name;
+    }
+
+    public int getModStrength() {
+        return ModStrength;
+    }
+
+    public void setModStrength(int modStrength) {
+        ModStrength = modStrength;
+    }
+
+    public int getModDexterity() {
+        return ModDexterity;
+    }
+
+    public void setModDexterity(int modDexterity) {
+        ModDexterity = modDexterity;
+    }
+
+    public int getModConstituition() {
+        return ModConstituition;
+    }
+
+    public void setModConstituition(int modConstituition) {
+        ModConstituition = modConstituition;
+    }
+
+    public int getModInteligence() {
+        return ModInteligence;
+    }
+
+    public void setModInteligence(int modInteligence) {
+        ModInteligence = modInteligence;
+    }
+
+    public int getModWisdom() {
+        return ModWisdom;
+    }
+
+    public void setModWisdom(int modWisdom) {
+        ModWisdom = modWisdom;
+    }
+
+    public int getModCharisma() {
+        return ModCharisma;
+    }
+
+    public void setModCharisma(int modCharisma) {
+        ModCharisma = modCharisma;
+    }
 }
