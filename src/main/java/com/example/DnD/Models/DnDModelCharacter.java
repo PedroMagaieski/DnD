@@ -26,8 +26,8 @@ public class DnDModelCharacter{
     @Column(nullable=false, name="LifePoints")
     @NotNull
     private int LifePoints;
+    @OneToOne
     private DnDModel dnDModel;
-
     public UUID getId() {
         return id;
     }

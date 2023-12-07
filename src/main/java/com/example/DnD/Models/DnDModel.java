@@ -40,8 +40,8 @@ public class DnDModel implements Serializable{
     private int ModWisdom;
     @Column(nullable=false)
     private int ModCharisma;
-    @OneToOne(cascade = CascadeType.ALL)//cascade significa que um nao existe sem o outro, mappedby???
-    @JoinColumn(name = "id")//id do dndModelCharacter traz aquela tabela pra dentro dessa //colocar , nullable = false
+    @OneToOne
+    @JoinColumn(name = "character_id")//id do dndModelCharacter traz aquela tabela pra dentro dessa //colocar , nullable = false???
     private DnDModelCharacter Character;//!!!!!!aqui o valor vira null por motivos??????????
     public UUID getId() {
         return id;
