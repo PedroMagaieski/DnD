@@ -1,7 +1,9 @@
 package com.example.DnD.Models;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.*;
+import org.jetbrains.annotations.NotNull;
 
 import java.io.Serializable;
 //import java.time.LocalDateTime;
@@ -9,13 +11,11 @@ import java.util.UUID;
 
 @Entity
 @Table(name ="TB_STATS")
-public class DnDModel implements Serializable {
+public class DnDModel implements Serializable{
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private UUID id;
-    @Column(nullable=false)
-    private String Name;
     @Column(nullable=false)
     private int Strength;
     @Column(nullable=false)
@@ -40,7 +40,9 @@ public class DnDModel implements Serializable {
     private int ModWisdom;
     @Column(nullable=false)
     private int ModCharisma;
-
+    @OneToOne(cascade = CascadeType.ALL)//cascade significa que um nao existe sem o outro, mappedby???
+    @JoinColumn(name = "id")//id do dndModelCharacter traz aquela tabela pra dentro dessa //colocar , nullable = false
+    private DnDModelCharacter Character;//!!!!!!aqui o valor vira null por motivos??????????
     public UUID getId() {
         return id;
     }
@@ -97,14 +99,6 @@ public class DnDModel implements Serializable {
         Charisma = aCharisma;
     }
 
-    public String getName() {
-        return Name;
-    }
-
-    public void setName(String name) {
-        Name = name;
-    }
-
     public int getModStrength() {
         return ModStrength;
     }
@@ -151,5 +145,13 @@ public class DnDModel implements Serializable {
 
     public void setModCharisma(int modCharisma) {
         ModCharisma = modCharisma;
+    }
+
+    public DnDModelCharacter getCharacter() {
+        return Character;
+    }
+
+    public void setCharacter(DnDModelCharacter character) {
+        Character = character;
     }
 }
