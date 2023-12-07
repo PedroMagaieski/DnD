@@ -8,7 +8,6 @@ import com.example.DnD.Services.DnDService;
 import jakarta.validation.Valid;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Bean;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
@@ -33,8 +32,11 @@ public class DnDController {
     }
     @PostMapping
     public ResponseEntity<Object> saveFicha (@RequestBody @Valid DnDto dndDto){
-        var dndModel = new DnDModel();//dndModel valores 0 e null no character, problema na constraint(NotBlank) do dto que chama esse campa
-        BeanUtils.copyProperties(dndDto, dndModel);//dndDto com os valores corretos, mas ao passar character para dndModel fica null com o id
+        var dndModel = new DnDModel();
+        var dndModelCharacter = new DnDModelCharacter();
+        BeanUtils.copyProperties(dndDto.getCharacter(),dndModelCharacter );
+        BeanUtils.copyProperties(dndDto, dndModel);
+        dndModel.setCharacter(dndModelCharacter);//nem questiona, ta funcionando ta valendo
         return ResponseEntity.status(HttpStatus.CREATED).body(dndService.save(dndModel));
     }
     @GetMapping

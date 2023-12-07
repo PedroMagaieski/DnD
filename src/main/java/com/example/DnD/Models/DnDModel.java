@@ -1,5 +1,6 @@
 package com.example.DnD.Models;
 
+import com.example.DnD.Dtos.DnDtoCharacter;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.*;
@@ -40,9 +41,9 @@ public class DnDModel implements Serializable{
     private int ModWisdom;
     @Column(nullable=false)
     private int ModCharisma;
-    @OneToOne
-    @JoinColumn(name = "character_id")//id do dndModelCharacter traz aquela tabela pra dentro dessa //colocar , nullable = false???
-    private DnDModelCharacter Character;//!!!!!!aqui o valor vira null por motivos??????????
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "character_id")
+    private DnDModelCharacter Character;
     public UUID getId() {
         return id;
     }

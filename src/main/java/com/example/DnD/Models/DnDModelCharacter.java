@@ -9,7 +9,9 @@ import java.util.UUID;
 @Entity
 @Table(name="TB_CHARACTER")
 public class DnDModelCharacter{
+    private static final long serialVersionUID = 1L;
     @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private UUID id;
     @Column(nullable=false, name="Name")
     @NotBlank
@@ -26,15 +28,7 @@ public class DnDModelCharacter{
     @Column(nullable=false, name="LifePoints")
     @NotNull
     private int LifePoints;
-    @OneToOne
-    private DnDModel dnDModel;
-    public UUID getId() {
-        return id;
-    }
 
-    public void setId(UUID id) {
-        this.id = id;
-    }
 
     public String getName() {
         return Name;
@@ -76,11 +70,5 @@ public class DnDModelCharacter{
         LifePoints = lifePoints;
     }
 
-    public DnDModel getDnDModel() {
-        return dnDModel;
-    }
 
-    public void setDnDModel(DnDModel dnDModel) {
-        this.dnDModel = dnDModel;
-    }
 }
