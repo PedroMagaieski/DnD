@@ -1,13 +1,21 @@
 #build the aplication (erro com as portas, conflito com aplication.properties)
-FROM eclipse-temurin:17-jdk-jammy
-LABEL authors="PEDRO"
+FROM ubuntu:latest AS build
+RUN apt-get update
+RUN apt-get install openjdk-17-jdk -y
+COPY . .
+
+RUN apt-get install maven -y
+RUN mvn clean install
+
+FROM openjdk:17-jdk-slim
+
 EXPOSE 8080
-WORKDIR /DnD
-COPY .mvn/ .mvn
-COPY mvnw pom.xml ./
-RUN ./mvnw dependency:resolve
-COPY src ./src
-CMD ["./mvnw","spring-boot:run"]
+
+COPY --from=build /target/DnD-0.0.1-SNAPSHOT.jar app.jar
+
+ENTRYPOINT ["java","-jar","app.jar"]
+
+
 
 
 
