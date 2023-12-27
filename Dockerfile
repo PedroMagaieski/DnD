@@ -6,7 +6,6 @@ COPY . .
 
 RUN apt-get install maven -y
 RUN mvn clean install -DskipTests
-RUN mvn spring-boot:run
 
 FROM openjdk:17-jdk-slim
 
